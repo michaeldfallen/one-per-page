@@ -1,6 +1,7 @@
 const { Question, goTo } = require('@hmcts/one-per-page');
 const { form, boolField, arrayField } = require('@hmcts/one-per-page/forms');
 const Joi = require('joi');
+const { answer } = require('@hmcts/one-per-page/checkYourAnswers');
 
 const twoMethods = 2;
 
@@ -30,6 +31,21 @@ class Contact extends Question {
       firstMethod,
       methods.join(', ')
     ].join(' and ');
+  }
+
+  answers() {
+    const contactMe = this.fields.contactMe.value;
+    if (!contactMe) {
+      return answer(this, {
+        question: this.content.cya.question,
+        answer: this.content.cya.dontContactMe,
+        value: { contactMe: false }
+      });
+    }
+    return answer(this, {
+      question: this.content.cya.question,
+      answer: this.content.cya.answer
+    });
   }
 }
 
