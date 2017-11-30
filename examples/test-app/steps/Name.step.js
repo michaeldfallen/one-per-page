@@ -37,6 +37,7 @@ class Name extends Question {
     return [
       answer(this, {
         question: this.content.cya.petitioner.question,
+        section: 'personal-details',
         answer: `${this.fields.firstName.value} ${this.fields.lastName.value}`,
         value: {
           firstName: this.fields.firstName.value,
@@ -45,6 +46,7 @@ class Name extends Question {
       }),
       answer(this, {
         question: this.content.cya.respondent.question,
+        section: 'respondent-details',
         value: {
           firstName: this.fields.respondentFirstName.value,
           lastName: this.fields.respondentLastName.value

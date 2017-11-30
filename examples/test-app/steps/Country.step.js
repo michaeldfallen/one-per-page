@@ -44,7 +44,10 @@ class Country extends Question {
   }
 
   answers() {
-    return answer(this, { answer: titleise(this.fields.country.value) });
+    return answer(this, {
+      section: 'personal-details',
+      answer: titleise(this.fields.country.value)
+    });
   }
 }
 
